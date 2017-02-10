@@ -1,0 +1,2 @@
+// https://g5-hub.herokuapp.com/admin/clients/g5-c-ikzy8kh7-carlo-inc-client/locations/g5-cl-55tzs3h7v-the-enclave/edit
+window.open('https://g5-hub.herokuapp.com/admin/clients/'+dataLayer[0].G5_CLIENT_ID+'/locations/'+dataLayer[0].G5_STORE_ID);

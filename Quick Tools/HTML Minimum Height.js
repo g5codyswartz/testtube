@@ -1,0 +1,1 @@
+$(".widget.html", $("iframe").contents()).css("min-height", "200px");

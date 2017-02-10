@@ -1,0 +1,1 @@
+$(".icon.page-settings-icon").click();

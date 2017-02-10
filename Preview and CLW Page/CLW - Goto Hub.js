@@ -1,0 +1,1 @@
+window.open('https://g5-hub.herokuapp.com/admin/clients/'+dataLayer[0].G5_CLIENT_ID);
