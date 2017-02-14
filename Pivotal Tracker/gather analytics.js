@@ -1,4 +1,11 @@
 /* global $ */
+
+var Util = class {
+  static nameValSquash(pre, cur) {
+    pre[cur.name] = cur.val;
+    return pre;
+  }
+}
 var PTAnalytics = class {
   constructor() {
     this.container = $("header[style]+div[style]>div");
@@ -8,20 +15,43 @@ var PTAnalytics = class {
     this.sections = this.storySections.parent().parent().parent().parent();
     this.storiesContainer = this.sections.find(">div:eq(1)");
     this.sectionNames = ["accepted", "rejected", "delivered", "finished", "started"];
-    this.stories = this.getStories();
     this.texts = [];
+
+    this.storiesEl = this.getStoriesEl();
+
     this.populateTexts();
   }
 
+  getData() {
+    let d = this.getSections();
+    let stories = this.getStories();
+
+    d.reduce((pre, cur, key) => {
+      cur.stories = stories;
+      pre[key] = cur;
+      return pre;
+    }, {});
+  }
+
   getStories() {
+    let storiesEl = this.getStoriesEl();
+
+    // TODO: return collection of PTStory
+
+  }
+
+  getStoriesEl() {
     return this.storiesContainer.map((i, el) => {
-      el = $(el);
-      let name = this.sectionNames[i];
-      let stories = el.find(">div>div");
-      let ret = {};
-      ret[name] = stories;
-      return ret;
-    });
+        el = $(el);
+        let name = this.sectionNames[i];
+        let stories = el.find(">div>div");
+        return {
+          name: name,
+          val: stories
+        };
+      })
+      .get()
+      .reduce(Util.nameValSquash, {});
   }
 
   populateTexts() {
@@ -48,12 +78,9 @@ var PTAnalytics = class {
     return this.sectionNames.map((section) => {
       return {
         name: section,
-        vals: this.getSection(section)
+        val: this.getSection(section)
       };
-    }).reduce((pre, cur) => {
-      pre[cur.name] = cur.vals;
-      return pre;
-    }, {});
+    }).reduce(Util.nameValSquash, {});
   }
 
   setText(name, val) {
@@ -74,6 +101,9 @@ var PTStory = class {
   }
 
   parseEl(el) {
+    /** TODO: 
+     * - create getters for these that traverse the DOM for the values
+     */
     this.type = type;
     this.points = points;
     this.name = name;
