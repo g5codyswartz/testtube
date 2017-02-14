@@ -4,12 +4,24 @@ var PTAnalytics = class {
     this.container = $("header[style]+div[style]>div");
     this.rightcol = this.container.find(">div:eq(1)>div");
     this.rightcolcols = this.rightcol.find(">div");
-
     this.storySections = $("[data-aid=stories-count]");
     this.sections = this.storySections.parent().parent().parent().parent();
+    this.storiesContainer = this.sections.find(">div:eq(1)");
     this.sectionNames = ["accepted", "rejected", "delivered", "finished", "started"];
+    this.stories = this.getStories();
     this.texts = [];
     this.populateTexts();
+  }
+
+  getStories() {
+    return this.storiesContainer.map((i, el) => {
+      el = $(el);
+      let name = this.sectionNames[i];
+      let stories = el.find(">div>div");
+      let ret = {};
+      ret[name] = stories;
+      return ret;
+    });
   }
 
   populateTexts() {
@@ -38,7 +50,7 @@ var PTAnalytics = class {
         name: section,
         vals: this.getSection(section)
       };
-    }).reduce((pre, cur)=>{
+    }).reduce((pre, cur) => {
       pre[cur.name] = cur.vals;
       return pre;
     }, {});
@@ -53,5 +65,23 @@ var PTAnalytics = class {
   }
 
 }
+
+var PTStory = class {
+
+  constructor(el) {
+    this.el = el;
+    this.parseEl();
+  }
+
+  parseEl(el) {
+    this.type = type;
+    this.points = points;
+    this.name = name;
+    this.owner = owner;
+    this.url = url;
+    this.tags = tags;
+  }
+
+};
 
 var test = new PTAnalytics();
