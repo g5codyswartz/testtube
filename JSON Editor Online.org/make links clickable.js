@@ -49,7 +49,7 @@
       $jq(".jsoneditor-url").each((i, el) => {
         el = $jq(el);
         let url = el.text();
-        el.after(`<a href="${url}">${url}</a>`)
+        el.after(`<a href="${url}" target="_blank">${url}</a>`)
       });
     });
 
