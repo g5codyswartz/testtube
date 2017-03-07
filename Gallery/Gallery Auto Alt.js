@@ -24,11 +24,11 @@ var photos = $(".photo-fields", gallery);
 var i = 0; // our loop counter
 $('.photo-field').each(function(){
 	
-	var pPhotoUrl = $(".form-field:nth-child(2) input[type=text]", this);
-	var pThumbUrl = $(".form-field:nth-child(3) input[type=text]", this);
-	var pAltTag = $(".form-field:nth-child(4) input[type=text]", this);
-	var pTitle = $(".form-field:nth-child(5) input[type=text]", this);
-	var pCaption = $(".form-field:nth-child(6) input[type=text]", this);
+	var pPhotoUrl = $(".form-field_url .form-field input[type=text]", this);
+	var pThumbUrl = $(".form-field_thumb_url .form-field input[type=text]", this);
+	var pAltTag = $(".form-field-alt_tag input[type=text]", this);
+	var pTitle = $(".form-field-title input[type=text]", this);
+	var pCaption = $(".form-field-caption input[type=text]", this);
 	
 	var url = pPhotoUrl.val();
 	
