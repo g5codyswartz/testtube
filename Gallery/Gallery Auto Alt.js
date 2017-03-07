@@ -1,6 +1,9 @@
 /*
 	Todo: 
 	
+	v1.4
+		- Tyler Hasenoehrl updated the script to work with CMS v4
+
 	v1.3
 		- Remove number prefix and gallery post-fix
 	
