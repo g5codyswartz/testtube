@@ -1,3 +1,4 @@
+// global jQuery, $jq, $
 // Step 1 Inject jQuery
 (function () {
 
@@ -17,7 +18,7 @@
   el.style.backgroundColor = '#f99';
 
   if (typeof jQuery != 'undefined') {
-    let msg = 'This page already using jQuery v' + jQuery.fn.jquery;
+    var msg = 'This page already using jQuery v' + jQuery.fn.jquery;
     return showMsg(msg);
   } else if (typeof $ == 'function') {
     otherlib = true;
@@ -42,21 +43,22 @@
     };
     head.appendChild(script);
   }
+  
   getScript('http://code.jquery.com/jquery.min.js', () => {
 
     statusMessage(() => {
       // Step 2 Profit
-      $jq(".jsoneditor-url").each((i, el) => {
+      $jq('.jsoneditor-url').each((i, el) => {
         el = $jq(el);
         let url = el.text();
-        el.after(`<a href="${url}" target="_blank">${url}</a>`)
+        el.after(`<a href="${url}" target="_blank">${url}</a>`);
       });
     });
 
   });
 
   function statusMessage(callback) {
-    let msg = '';
+    var msg = '';
     if (typeof jQuery == 'undefined') {
       msg = 'Sorry, but jQuery wasn\'t able to load';
     } else {
