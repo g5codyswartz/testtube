@@ -5,7 +5,6 @@ var ClickableProject = class {
     this.projects = $("table.table:eq(1) tr>td:nth-child(3)");
     this.projectOptions = $("option", this.project);
     this.options = this.getOptions();
-
     // Register Events
     this.projectClick();
 

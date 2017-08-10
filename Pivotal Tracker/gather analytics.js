@@ -5,7 +5,7 @@ var Util = class {
     pre[cur.name] = cur.val;
     return pre;
   }
-}
+};
 var PTAnalytics = class {
   constructor() {
     this.container = $("header[style]+div[style]>div");
@@ -42,14 +42,14 @@ var PTAnalytics = class {
 
   getStoriesEl() {
     return this.storiesContainer.map((i, el) => {
-        el = $(el);
-        let name = this.sectionNames[i];
-        let stories = el.find(">div>div");
-        return {
-          name: name,
-          val: stories
-        };
-      })
+      el = $(el);
+      let name = this.sectionNames[i];
+      let stories = el.find(">div>div");
+      return {
+        name: name,
+        val: stories
+      };
+    })
       .get()
       .reduce(Util.nameValSquash, {});
   }
@@ -88,10 +88,10 @@ var PTAnalytics = class {
   }
 
   getText(name) {
-    return this.texts[name]
+    return this.texts[name];
   }
 
-}
+};
 
 var PTStory = class {
 
