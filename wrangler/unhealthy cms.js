@@ -1,0 +1,1 @@
+$('.version .healthy').parents('tr').hide();
