@@ -1,0 +1,1 @@
+document.querySelectorAll('tbody td').forEach(el => el.innerText = el.innerText.replace(/\d{9,13}/, function(match) { return new Date(parseInt(match)).toLocaleString(); }));
